@@ -15,14 +15,40 @@
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- DataTables CSS -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-        <!-- DataTables JS -->
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+           <!-- Tabulator CSS -->
+           <link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator.min.css" rel="stylesheet">
+           <!-- Tabulator JS -->
+           <script src="https://unpkg.com/tabulator-tables@5.4.3/dist/js/tabulator.min.js"></script>
+   
         
         <style>
             /* El contenido estará oculto hasta que se valide la autenticación */
             #main-content {
                 display: none;
+            }
+
+             /* Estilos personalizados para botones */
+             .custom-button {
+                background-color: #1d4ed8;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-size: 0.875rem;
+                transition: background-color 0.3s ease;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            .custom-button:hover {
+                background-color: #2563eb;
+            }
+
+            .custom-button-delete {
+                background-color: #dc2626;
+            }
+
+            .custom-button-delete:hover {
+                background-color: #ef4444;
             }
         </style>
     </head>
@@ -234,45 +260,33 @@
           </div>
       
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      
+         
               <!-- Reportes -->
               <div class="mt-8 rounded-md bg-white shadow p-5">
-                  <!-- Tabla -->
+                <div class="mb-4">
+                    <a href="registrar_companies.html" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+                        Registrar Compañía
+                    </a>
+                </div>
                   <div class="overflow-x-auto">
-                      <table id="companiesTable" class="min-w-full divide-y divide-gray-200">
-                          <thead class="bg-gray-50">
-                              <tr>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Razón Social</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">RUC</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dirección</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Certificado</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creado</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actualizado</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <!-- Los datos se cargarán dinámicamente aquí -->
-                          </tbody>
-                      </table>
+                    <table class="min-w-full bg-white border border-gray-300">
+                        <thead>
+                            <tr>
+                                <th class="py-2 px-4 border-b">Id</th>
+                                <th class="py-2 px-4 border-b">Razón Social</th>
+                                <th class="py-2 px-4 border-b">RUC</th>
+                                <th class="py-2 px-4 border-b">Dirección</th>
+                                <th class="py-2 px-4 border-b">Certificado</th>
+                                <th class="py-2 px-4 border-b">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companiesTableBody" class="text-gray-600">
+                            <!-- Aquí se agregarán dinámicamente las filas -->
+                        </tbody>
+                    </table>
                   </div>
                   
-              <!-- Paginación -->
-              <div class="flex justify-between items-center mt-4">
-                  <div>
-                      <select class="border border-gray-300 text-gray-600 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                          <option value="10">10</option>
-                          <option value="20">20</option>
-                          <option value="30">30</option>
-                      </select>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                      <span class="text-sm text-gray-600">Mostrando 1 a 3 de 3 registros</span>
-                      <nav class="inline-flex space-x-1">
-                          <a href="#" class="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none">1</a>
-                      </nav>
-                  </div>
-              </div>
+           
               </div>
           </div>
       </main>
@@ -281,44 +295,100 @@
 
 <script src="./js/auth.js"></script>
 <script>
-    $(document).ready(function() {
-        // Obtener el token del localStorage
-        const token = localStorage.getItem('accessToken');
+    const apiUrl = 'http://127.0.0.1:8000/api/companies'; // Ajusta la URL de la API según sea necesario
+
+    // Función para cargar los datos desde la API
+    async function loadCompanies() {
+        const token = localStorage.getItem('accessToken'); // Tomar token de localStorage
         if (!token) {
             console.error('No se encontró un token en localStorage.');
             return; // Detener si no hay token
         }
 
-        $('#companiesTable').DataTable({
-            // Configuración de DataTable
-            processing: true,
-            serverSide: false,
-            ajax: {
-                url: 'http://127.0.0.1:8000/api/companies', // Cambia la URL si es necesario
-                type: 'GET',
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}` // Usar el token del localStorage
-                },
-                dataSrc: function(json) {
-                    console.log('Datos recibidos:', json);
-                    return json; // Ajusta según el formato de respuesta de tu API
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error al cargar los datos:', error);
+                    'Authorization': `Bearer ${token}`, // Usar el token de autenticación
+                    'Content-Type': 'application/json'
                 }
-            },
-            columns: [
-                { data: 'id', title: 'Id' },
-                { data: 'razon_social', title: 'Razón Social' },
-                { data: 'ruc', title: 'RUC' },
-                { data: 'direccion', title: 'Dirección' },
-                { data: 'cert_path', title: 'Certificado' },
-                { data: 'created_at', title: 'Creado' },
-                { data: 'updated_at', title: 'Actualizado' }
-            ],
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json' // Traducción al español
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos de la API');
             }
+
+            const companies = await response.json(); // Obtener los datos de la API
+            renderTable(companies); // Llamar a la función para renderizar los datos en la tabla
+
+        } catch (error) {
+            console.error('Error al cargar los datos:', error);
+        }
+    }
+
+    // Función para renderizar los datos en la tabla
+    function renderTable(companies) {
+        const tableBody = document.getElementById('companiesTableBody');
+        tableBody.innerHTML = ''; // Limpiar el contenido anterior
+
+        companies.forEach(company => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td class="py-2 px-4 border-b text-center">${company.id}</td>
+                <td class="py-2 px-4 border-b">${company.razon_social}</td>
+                <td class="py-2 px-4 border-b">${company.ruc}</td>
+                <td class="py-2 px-4 border-b">${company.direccion}</td>
+                <td class="py-2 px-4 border-b">${company.cert_path}</td>
+                <td class="py-2 px-4 border-b  text-center">
+                    <div class="flex">
+                    <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 mr-2" onclick="editCompany(${company.id})">Editar</button>
+                    <button class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600" onclick="deleteCompany(${company.id})">Eliminar</button>
+                    </div>
+                  
+                </td>
+            `;
+
+            tableBody.appendChild(row);
         });
-    });
+    }
+
+    // Función para editar una compañía
+    function editCompany(id) {
+        console.log(`Editando compañía con ID: ${id}`);
+        // Aquí puedes implementar la lógica para editar la compañía
+        // Mostrar un formulario modal, por ejemplo, para modificar los datos
+    }
+
+    // Función para eliminar una compañía
+    async function deleteCompany(id) {
+        const token = localStorage.getItem('accessToken'); // Tomar token de localStorage
+        if (!token) {
+            console.error('No se encontró un token en localStorage.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${apiUrl}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al eliminar la compañía');
+            }
+
+            console.log(`Compañía con ID ${id} eliminada`);
+            loadCompanies(); // Recargar los datos
+
+        } catch (error) {
+            console.error('Error al eliminar la compañía:', error);
+        }
+    }
+
+    // Cargar los datos al iniciar la página
+    document.addEventListener('DOMContentLoaded', loadCompanies);
 </script>
