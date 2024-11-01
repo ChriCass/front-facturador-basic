@@ -1,810 +1,676 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Panel de Reportes</title>
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net" />
-        <link
-            href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
-            rel="stylesheet"
-        />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script
-            defer
-            src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
-        ></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Reportes</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
 
-        <style>
-            /* El contenido estará oculto hasta que se valide la autenticación */
-            #main-content {
-                display: none;
-            }
-        </style>
-    </head>
-    <body class="bg-gray-100">
-        <!-- Segundo Navbar (visible solo en tablet y pantallas pequeñas) -->
-        <main id="main-content">
-            <div class="lg:hidden" x-data="{ openMenu: false }">
-                <div
-                    class="flex justify-between items-center p-4 bg-white shadow"
+    <style>
+      /* El contenido estará oculto hasta que se valide la autenticación */
+      #main-content {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Segundo Navbar (visible solo en tablet y pantallas pequeñas) -->
+    <main id="main-content">
+      <div class="lg:hidden" x-data="{ openMenu: false }">
+        <div class="flex justify-between items-center p-4 bg-white shadow">
+          <div>
+            <!-- Aquí puedes colocar el logo -->
+            <!-- Aquí puedes colocar el logo -->
+            <svg
+              width="50"
+              height="50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M504.4 115.8a5.7 5.7 0 0 0 -.3-.7 8.5 8.5 0 0 0 -.5-1.3 6 6 0 0 0 -.5-.7 9.4 9.4 0 0 0 -.7-.9c-.2-.2-.5-.4-.8-.6a8.8 8.8 0 0 0 -.9-.7L404.4 55.6a8 8 0 0 0 -8 0L300.1 111h0a8.1 8.1 0 0 0 -.9 .7 7.7 7.7 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .2-.4 .5-.5 .7a9.7 9.7 0 0 0 -.5 1.3c-.1 .2-.2 .4-.3 .7a8.1 8.1 0 0 0 -.3 2.1V223.2l-80.2 46.2V63.4a7.8 7.8 0 0 0 -.3-2.1c-.1-.2-.2-.5-.3-.7a8.4 8.4 0 0 0 -.5-1.2c-.1-.3-.4-.5-.5-.7a9.4 9.4 0 0 0 -.7-.9 9.5 9.5 0 0 0 -.8-.6 9.8 9.8 0 0 0 -.9-.7h0L115.6 1.1a8 8 0 0 0 -8 0L11.3 56.5h0a6.5 6.5 0 0 0 -.9 .7 7.8 7.8 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .3-.4 .5-.6 .7a7.9 7.9 0 0 0 -.5 1.2 6.5 6.5 0 0 0 -.3 .7 8.2 8.2 0 0 0 -.3 2.1v329.7a8 8 0 0 0 4 7l192.5 110.8a8.8 8.8 0 0 0 1.3 .5c.2 .1 .4 .2 .6 .3a7.9 7.9 0 0 0 4.1 0c.2-.1 .4-.2 .6-.2a8.6 8.6 0 0 0 1.4-.6L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7V117.9A8.6 8.6 0 0 0 504.4 115.8zM111.6 17.3h0l80.2 46.2-80.2 46.2L31.4 63.4zm88.3 60V278.6l-46.5 26.8-33.7 19.4V123.5l46.5-26.8zm0 412.8L23.4 388.5V77.3L57.1 96.7l46.5 26.8V338.7a6.9 6.9 0 0 0 .1 .9 8 8 0 0 0 .2 1.2h0a5.9 5.9 0 0 0 .4 .9 6.4 6.4 0 0 0 .4 1v0a8.5 8.5 0 0 0 .6 .8 7.6 7.6 0 0 0 .7 .8l0 0c.2 .2 .5 .4 .8 .6a8.9 8.9 0 0 0 .9 .7l0 0 0 0 92.2 52.2zm8-106.2-80.1-45.3 84.1-48.4 92.3-53.1 80.1 46.1-58.8 33.6zm184.5 4.6L215.9 490.1V397.8L346.6 323.2l45.8-26.2zm0-119.1L358.7 250l-46.5-26.8V131.8l33.7 19.4L392.4 178zm8-105.3-80.2-46.2 80.2-46.2 80.2 46.2zm8 105.3V178L455 151.2l33.7-19.4v91.4h0z"
+              />
+            </svg>
+          </div>
+          <button
+            @click="openMenu = !openMenu"
+            class="text-gray-600 focus:outline-none"
+          >
+            <!-- Icono hamburguesa -->
+            <svg
+              x-show="!openMenu"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menú desplegable a pantalla completa -->
+        <div
+          x-show="openMenu"
+          class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center space-y-8"
+          @click.away="openMenu = false"
+        >
+          <!-- Botón X en la esquina superior derecha -->
+          <button
+            @click="openMenu = false"
+            class="absolute top-4 right-4 text-gray-600 focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Opciones del menú -->
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Panel principal</a
+          >
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Compañias</a
+          >
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Boletas</a
+          >
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Facturas</a
+          >
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Nota de credito</a
+          >
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Nota de debito</a
+          >
+          <div class="border-t border-gray-300 w-full"></div>
+          <a href="#" class="text-gray-600 text-xl hover:text-gray-900"
+            >Perfil</a
+          >
+          <a
+            href="#"
+            class="text-gray-600 text-xl hover:text-gray-900"
+            id="logoutButton"
+            >Finalizar sesión</a
+          >
+        </div>
+      </div>
+
+      <!-- Navbar (visible en desktop) -->
+      <header class="bg-white shadow hidden lg:block">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-4">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <div>
+                <!-- Aquí puedes colocar el logo -->
+                <!-- Aquí puedes colocar el logo -->
+                <svg
+                  width="50"
+                  height="50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
                 >
-                    <div>
-                        <!-- Aquí puedes colocar el logo -->
-                        <!-- Aquí puedes colocar el logo -->
-                        <svg
-                            width="50"
-                            height="50"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512"
-                        >
-                            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path
-                                d="M504.4 115.8a5.7 5.7 0 0 0 -.3-.7 8.5 8.5 0 0 0 -.5-1.3 6 6 0 0 0 -.5-.7 9.4 9.4 0 0 0 -.7-.9c-.2-.2-.5-.4-.8-.6a8.8 8.8 0 0 0 -.9-.7L404.4 55.6a8 8 0 0 0 -8 0L300.1 111h0a8.1 8.1 0 0 0 -.9 .7 7.7 7.7 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .2-.4 .5-.5 .7a9.7 9.7 0 0 0 -.5 1.3c-.1 .2-.2 .4-.3 .7a8.1 8.1 0 0 0 -.3 2.1V223.2l-80.2 46.2V63.4a7.8 7.8 0 0 0 -.3-2.1c-.1-.2-.2-.5-.3-.7a8.4 8.4 0 0 0 -.5-1.2c-.1-.3-.4-.5-.5-.7a9.4 9.4 0 0 0 -.7-.9 9.5 9.5 0 0 0 -.8-.6 9.8 9.8 0 0 0 -.9-.7h0L115.6 1.1a8 8 0 0 0 -8 0L11.3 56.5h0a6.5 6.5 0 0 0 -.9 .7 7.8 7.8 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .3-.4 .5-.6 .7a7.9 7.9 0 0 0 -.5 1.2 6.5 6.5 0 0 0 -.3 .7 8.2 8.2 0 0 0 -.3 2.1v329.7a8 8 0 0 0 4 7l192.5 110.8a8.8 8.8 0 0 0 1.3 .5c.2 .1 .4 .2 .6 .3a7.9 7.9 0 0 0 4.1 0c.2-.1 .4-.2 .6-.2a8.6 8.6 0 0 0 1.4-.6L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7V117.9A8.6 8.6 0 0 0 504.4 115.8zM111.6 17.3h0l80.2 46.2-80.2 46.2L31.4 63.4zm88.3 60V278.6l-46.5 26.8-33.7 19.4V123.5l46.5-26.8zm0 412.8L23.4 388.5V77.3L57.1 96.7l46.5 26.8V338.7a6.9 6.9 0 0 0 .1 .9 8 8 0 0 0 .2 1.2h0a5.9 5.9 0 0 0 .4 .9 6.4 6.4 0 0 0 .4 1v0a8.5 8.5 0 0 0 .6 .8 7.6 7.6 0 0 0 .7 .8l0 0c.2 .2 .5 .4 .8 .6a8.9 8.9 0 0 0 .9 .7l0 0 0 0 92.2 52.2zm8-106.2-80.1-45.3 84.1-48.4 92.3-53.1 80.1 46.1-58.8 33.6zm184.5 4.6L215.9 490.1V397.8L346.6 323.2l45.8-26.2zm0-119.1L358.7 250l-46.5-26.8V131.8l33.7 19.4L392.4 178zm8-105.3-80.2-46.2 80.2-46.2 80.2 46.2zm8 105.3V178L455 151.2l33.7-19.4v91.4h0z"
-                            />
-                        </svg>
-                    </div>
-                    <button
-                        @click="openMenu = !openMenu"
-                        class="text-gray-600 focus:outline-none"
-                    >
-                        <!-- Icono hamburguesa -->
-                        <svg
-                            x-show="!openMenu"
-                            class="w-6 h-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            ></path>
-                        </svg>
-                    </button>
-                </div>
+                  <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path
+                    d="M504.4 115.8a5.7 5.7 0 0 0 -.3-.7 8.5 8.5 0 0 0 -.5-1.3 6 6 0 0 0 -.5-.7 9.4 9.4 0 0 0 -.7-.9c-.2-.2-.5-.4-.8-.6a8.8 8.8 0 0 0 -.9-.7L404.4 55.6a8 8 0 0 0 -8 0L300.1 111h0a8.1 8.1 0 0 0 -.9 .7 7.7 7.7 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .2-.4 .5-.5 .7a9.7 9.7 0 0 0 -.5 1.3c-.1 .2-.2 .4-.3 .7a8.1 8.1 0 0 0 -.3 2.1V223.2l-80.2 46.2V63.4a7.8 7.8 0 0 0 -.3-2.1c-.1-.2-.2-.5-.3-.7a8.4 8.4 0 0 0 -.5-1.2c-.1-.3-.4-.5-.5-.7a9.4 9.4 0 0 0 -.7-.9 9.5 9.5 0 0 0 -.8-.6 9.8 9.8 0 0 0 -.9-.7h0L115.6 1.1a8 8 0 0 0 -8 0L11.3 56.5h0a6.5 6.5 0 0 0 -.9 .7 7.8 7.8 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .3-.4 .5-.6 .7a7.9 7.9 0 0 0 -.5 1.2 6.5 6.5 0 0 0 -.3 .7 8.2 8.2 0 0 0 -.3 2.1v329.7a8 8 0 0 0 4 7l192.5 110.8a8.8 8.8 0 0 0 1.3 .5c.2 .1 .4 .2 .6 .3a7.9 7.9 0 0 0 4.1 0c.2-.1 .4-.2 .6-.2a8.6 8.6 0 0 0 1.4-.6L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7V117.9A8.6 8.6 0 0 0 504.4 115.8zM111.6 17.3h0l80.2 46.2-80.2 46.2L31.4 63.4zm88.3 60V278.6l-46.5 26.8-33.7 19.4V123.5l46.5-26.8zm0 412.8L23.4 388.5V77.3L57.1 96.7l46.5 26.8V338.7a6.9 6.9 0 0 0 .1 .9 8 8 0 0 0 .2 1.2h0a5.9 5.9 0 0 0 .4 .9 6.4 6.4 0 0 0 .4 1v0a8.5 8.5 0 0 0 .6 .8 7.6 7.6 0 0 0 .7 .8l0 0c.2 .2 .5 .4 .8 .6a8.9 8.9 0 0 0 .9 .7l0 0 0 0 92.2 52.2zm8-106.2-80.1-45.3 84.1-48.4 92.3-53.1 80.1 46.1-58.8 33.6zm184.5 4.6L215.9 490.1V397.8L346.6 323.2l45.8-26.2zm0-119.1L358.7 250l-46.5-26.8V131.8l33.7 19.4L392.4 178zm8-105.3-80.2-46.2 80.2-46.2 80.2 46.2zm8 105.3V178L455 151.2l33.7-19.4v91.4h0z"
+                  />
+                </svg>
+              </div>
 
-                <!-- Menú desplegable a pantalla completa -->
-                <div
-                    x-show="openMenu"
-                    class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center space-y-8"
-                    @click.away="openMenu = false"
+              <nav class="ml-8 space-x-6 flex">
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Panel principal</a
                 >
-                    <!-- Botón X en la esquina superior derecha -->
-                    <button
-                        @click="openMenu = false"
-                        class="absolute top-4 right-4 text-gray-600 focus:outline-none"
-                    >
-                        <svg
-                            class="w-8 h-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"
-                            ></path>
-                        </svg>
-                    </button>
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Compañias</a
+                >
 
-                    <!-- Opciones del menú -->
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Panel principal</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Compañias</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Boletas</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Facturas</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Nota de credito</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Nota de debito</a
-                    >
-                    <div class="border-t border-gray-300 w-full"></div>
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        >Perfil</a
-                    >
-                    <a
-                        href="#"
-                        class="text-gray-600 text-xl hover:text-gray-900"
-                        id="logoutButton"
-                        >Finalizar sesión</a
-                    >
-                </div>
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Boletas</a
+                >
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Facturas</a
+                >
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Notas de debito</a
+                >
+                <a href="#" class="text-gray-600 hover:text-gray-900"
+                  >Notas de credito</a
+                >
+              </nav>
             </div>
 
-            <!-- Navbar (visible en desktop) -->
-            <header class="bg-white shadow hidden lg:block">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-4">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center">
-                            <div>
-                                <!-- Aquí puedes colocar el logo -->
-                                <!-- Aquí puedes colocar el logo -->
-                                <svg
-                                    width="50"
-                                    height="50"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                    <path
-                                        d="M504.4 115.8a5.7 5.7 0 0 0 -.3-.7 8.5 8.5 0 0 0 -.5-1.3 6 6 0 0 0 -.5-.7 9.4 9.4 0 0 0 -.7-.9c-.2-.2-.5-.4-.8-.6a8.8 8.8 0 0 0 -.9-.7L404.4 55.6a8 8 0 0 0 -8 0L300.1 111h0a8.1 8.1 0 0 0 -.9 .7 7.7 7.7 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .2-.4 .5-.5 .7a9.7 9.7 0 0 0 -.5 1.3c-.1 .2-.2 .4-.3 .7a8.1 8.1 0 0 0 -.3 2.1V223.2l-80.2 46.2V63.4a7.8 7.8 0 0 0 -.3-2.1c-.1-.2-.2-.5-.3-.7a8.4 8.4 0 0 0 -.5-1.2c-.1-.3-.4-.5-.5-.7a9.4 9.4 0 0 0 -.7-.9 9.5 9.5 0 0 0 -.8-.6 9.8 9.8 0 0 0 -.9-.7h0L115.6 1.1a8 8 0 0 0 -8 0L11.3 56.5h0a6.5 6.5 0 0 0 -.9 .7 7.8 7.8 0 0 0 -.8 .6 8.2 8.2 0 0 0 -.7 .9c-.2 .3-.4 .5-.6 .7a7.9 7.9 0 0 0 -.5 1.2 6.5 6.5 0 0 0 -.3 .7 8.2 8.2 0 0 0 -.3 2.1v329.7a8 8 0 0 0 4 7l192.5 110.8a8.8 8.8 0 0 0 1.3 .5c.2 .1 .4 .2 .6 .3a7.9 7.9 0 0 0 4.1 0c.2-.1 .4-.2 .6-.2a8.6 8.6 0 0 0 1.4-.6L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7V117.9A8.6 8.6 0 0 0 504.4 115.8zM111.6 17.3h0l80.2 46.2-80.2 46.2L31.4 63.4zm88.3 60V278.6l-46.5 26.8-33.7 19.4V123.5l46.5-26.8zm0 412.8L23.4 388.5V77.3L57.1 96.7l46.5 26.8V338.7a6.9 6.9 0 0 0 .1 .9 8 8 0 0 0 .2 1.2h0a5.9 5.9 0 0 0 .4 .9 6.4 6.4 0 0 0 .4 1v0a8.5 8.5 0 0 0 .6 .8 7.6 7.6 0 0 0 .7 .8l0 0c.2 .2 .5 .4 .8 .6a8.9 8.9 0 0 0 .9 .7l0 0 0 0 92.2 52.2zm8-106.2-80.1-45.3 84.1-48.4 92.3-53.1 80.1 46.1-58.8 33.6zm184.5 4.6L215.9 490.1V397.8L346.6 323.2l45.8-26.2zm0-119.1L358.7 250l-46.5-26.8V131.8l33.7 19.4L392.4 178zm8-105.3-80.2-46.2 80.2-46.2 80.2 46.2zm8 105.3V178L455 151.2l33.7-19.4v91.4h0z"
-                                    />
-                                </svg>
-                            </div>
+            <div x-data="{ open: false }" class="relative">
+              <button
+                @click="open = !open"
+                class="text-gray-600 focus:outline-none"
+              >
+                Christian Cassas Castillo
+                <svg
+                  class="inline w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
 
-                            <nav class="ml-8 space-x-6 flex">
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Panel principal</a
-                                >
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Compañias</a
-                                >
-
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Boletas</a
-                                >
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Facturas</a
-                                >
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Notas de debito</a
-                                >
-                                <a
-                                    href="#"
-                                    class="text-gray-600 hover:text-gray-900"
-                                    >Notas de credito</a
-                                >
-                            </nav>
-                        </div>
-
-                        <div x-data="{ open: false }" class="relative">
-                            <button
-                                @click="open = !open"
-                                class="text-gray-600 focus:outline-none"
-                            >
-                                Christian Cassas Castillo
-                                <svg
-                                    class="inline w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 9l-7 7-7-7"
-                                    ></path>
-                                </svg>
-                            </button>
-
-                            <div
-                                x-show="open"
-                                @click.away="open = false"
-                                class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg"
-                            >
-                                <a
-                                    href="#"
-                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                                    >Perfil</a
-                                >
-                                <div class="border-t border-gray-200"></div>
-                                <a
-                                    href="#"
-                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                                    id="logoutButton"
-                                    >Finalizar sesión</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Encabezado "Panel" -->
-            <div class="bg-white mt-0 p-4">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-semibold text-gray-800">
-                        Emitir boleta/factura
-                    </h1>
-                </div>
+              <div
+                x-show="open"
+                @click.away="open = false"
+                class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >Perfil</a
+                >
+                <div class="border-t border-gray-200"></div>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  id="logoutButton"
+                  >Finalizar sesión</a
+                >
+              </div>
             </div>
-            <!-- Alerta de éxito o error (inicialmente oculta) -->
-         
+          </div>
+        </div>
+      </header>
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="mt-8 rounded-md bg-white shadow p-5">
-                    <form id="invoiceForm">
-                        <div
-                        id="alertBox"
-                        class="hidden fixed top-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4"
-                    >
-                        <div class="flex items-start">
-                            <div id="alertIcon" class="w-6 h-6 mr-3"></div>
-                            <div>
-                                <h3 id="alertTitle" class="text-lg font-semibold"></h3>
-                                <p
-                                    id="alertMessage"
-                                    class="text-sm text-gray-600 mt-2"
-                                ></p>
-                            </div>
-                            <button
-                                id="closeAlert"
-                                class="ml-auto text-gray-500 hover:text-gray-900"
-                            >
-                                <svg
-                                    class="w-5 h-5"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    ></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                        <!-- UBL Version y Tipo Operación -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >UBL Version</label
-                                >
-                                <input
-                                    type="text"
-                                    id="ublVersion"
-                                    value="2.1"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Tipo de Operación</label
-                                >
-                                <input
-                                    type="text"
-                                    id="tipoOperacion"
-                                    value="0101"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
+      <!-- Encabezado "Panel" -->
+      <div class="bg-white mt-0 p-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <h1 class="text-3xl font-semibold text-gray-800">
+            Emitir boleta/factura
+          </h1>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mt-8 rounded-md bg-white shadow-lg p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Botón 1: Abrir Formulario de Emisión -->
+            <button
+              id="abrirFormularioBtn"
+              class="w-full bg-teal-500 text-white py-4 px-6 rounded-md shadow-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 flex items-center justify-center space-x-3"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6M9 12H5m4 0h10M12 5v14M5 12a7 7 0 1114 0 7 7 0 01-14 0z"
+                />
+              </svg>
+              <span>Abrir Formulario de Emisión</span>
+            </button>
 
-                        <!-- Tipo Documento, Serie y Correlativo -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Tipo de Documento</label
-                                >
-                                <input
-                                    type="text"
-                                    id="tipoDoc"
-                                    value="01"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700">Serie</label>
-                                <input
-                                    type="text"
-                                    id="serie"
-                                    value="F001"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Correlativo</label
-                                >
-                                <input
-                                    type="text"
-                                    id="correlativo"
-                                    value="1"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
+            <!-- Botón 2: Generar XML -->
+            <!-- Botón 2: Generar XML -->
+            <button
+              id="generateXmlBtn"
+              disabled
+              class="w-full bg-indigo-500 text-white py-4 px-6 rounded-md shadow-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 9V7a4 4 0 00-8 0v2m-2 0a6 6 0 0112 0v2a6 6 0 01-12 0v-2m6 8h.01"
+                />
+              </svg>
+              <span>Generar XML</span>
+            </button>
 
-                        <!-- Fecha Emisión, Forma Pago y Tipo Moneda -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Fecha de Emisión</label
-                                >
-                                <input
-                                    type="text"
-                                    id="fechaEmision"
-                                    value="2020-08-24 13:05:00"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Forma de Pago</label
-                                >
-                                <input
-                                    type="text"
-                                    id="formaPago"
-                                    value="Contado"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Tipo de Moneda</label
-                                >
-                                <input
-                                    type="text"
-                                    id="tipoMoneda"
-                                    value="PEN"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
+            <!-- Botón 3: Generar PDF -->
+            <button
+              id="generatePdfBtn"
+              disabled
+              class="w-full bg-red-500 text-white py-4 px-6 rounded-md shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16l4-4-4-4m8 0v8"
+                />
+              </svg>
+              <span>Generar PDF</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
-                        <!-- Empresa: Datos de la Compañía -->
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">
-                            Datos de la Compañía
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700">RUC</label>
-                                <input
-                                    type="text"
-                                    id="companyRuc"
-                                    value="20123456789"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Razón Social</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyRazonSocial"
-                                    value="GREEN SAC"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Nombre Comercial</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyNombreComercial"
-                                    value="GREEN"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
+      <!-- Alerta de éxito o error (inicialmente oculta) -->
 
-                        <!-- Dirección de la Compañía -->
-                        <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Ubigeo</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyUbigeo"
-                                    value="150101"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Departamento</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyDepartamento"
-                                    value="LIMA"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Provincia</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyProvincia"
-                                    value="LIMA"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Distrito</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyDistrito"
-                                    value="LIMA"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Código Local</label
-                                >
-                                <input
-                                    type="text"
-                                    id="companyCodigoLocal"
-                                    value="0000"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-
-                        <!-- Datos del Cliente -->
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">
-                            Datos del Cliente
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Tipo de Documento</label
-                                >
-                                <input
-                                    type="text"
-                                    id="clientTipoDoc"
-                                    value="6"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Número de Documento</label
-                                >
-                                <input
-                                    type="text"
-                                    id="clientNumDoc"
-                                    value="20000000001"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-gray-700"
-                                    >Razón Social</label
-                                >
-                                <input
-                                    type="text"
-                                    id="clientRazonSocial"
-                                    value="EMPRESA X"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-
-                        <!-- Totales -->
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">
-                            Totales
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Monto Operaciones Gravadas</label
-                                >
-                                <input
-                                    type="text"
-                                    id="mtoOperGravadas"
-                                    value="100"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Monto IGV</label
-                                >
-                                <input
-                                    type="text"
-                                    id="mtoIGV"
-                                    value="18"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Valor Venta</label
-                                >
-                                <input
-                                    type="text"
-                                    id="valorVenta"
-                                    value="100"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >SubTotal</label
-                                >
-                                <input
-                                    type="text"
-                                    id="subTotal"
-                                    value="118"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Monto Impuesto Venta</label
-                                >
-                                <input
-                                    type="text"
-                                    id="mtoImpVenta"
-                                    value="118"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-
-                        <!-- Detalles del Producto -->
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">
-                            Detalles del Producto
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Código Producto</label
-                                >
-                                <input
-                                    type="text"
-                                    id="prodCodigo"
-                                    value="P001"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Unidad</label
-                                >
-                                <input
-                                    type="text"
-                                    id="prodUnidad"
-                                    value="NIU"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Cantidad</label
-                                >
-                                <input
-                                    type="number"
-                                    id="prodCantidad"
-                                    value="2"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Monto Valor Unitario</label
-                                >
-                                <input
-                                    type="text"
-                                    id="prodMtoValorUnitario"
-                                    value="50"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-
-                        <!-- Leyenda -->
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">
-                            Leyenda
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <label class="block text-gray-700"
-                                    >Código</label
-                                >
-                                <input
-                                    type="text"
-                                    id="legendCode"
-                                    value="1000"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700">Valor</label>
-                                <input
-                                    type="text"
-                                    id="legendValue"
-                                    value="SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES"
-                                    class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                                />
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            class="px-4 py-2 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                        >
-                            enviar
-                        </button>
-                    </form>
+      <div id="container" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mt-8 rounded-md bg-white shadow p-5">
+          <form id="invoiceForm">
+            <div
+              id="alertBox"
+              class="hidden fixed top-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4"
+            >
+              <div class="flex items-start">
+                <div id="alertIcon" class="w-6 h-6 mr-3"></div>
+                <div>
+                  <h3 id="alertTitle" class="text-lg font-semibold"></h3>
+                  <p id="alertMessage" class="text-sm text-gray-600 mt-2"></p>
                 </div>
+                <button
+                  id="closeAlert"
+                  class="ml-auto text-gray-500 hover:text-gray-900"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
             </div>
-        </main>
+            <!-- UBL Version y Tipo Operación -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">UBL Version</label>
+                <input
+                  type="text"
+                  id="ublVersion"
+                  value="2.1"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Tipo de Operación</label>
+                <input
+                  type="text"
+                  id="tipoOperacion"
+                  value="0101"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
 
-        <script src="./js/auth.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('invoiceForm');
-                const alertBox = document.getElementById('alertBox');
-                const alertTitle = document.getElementById('alertTitle');
-                const alertMessage = document.getElementById('alertMessage');
-                const alertIcon = document.getElementById('alertIcon');
-                const closeAlert = document.getElementById('closeAlert');
-            
-                // Función para mostrar la alerta
-                const showAlert = (type, title, message) => {
-                    // Cambiar el icono y el estilo según el tipo de alerta
-                    if (type === 'success') {
-                        alertBox.classList.remove('bg-red-100', 'text-red-500');
-                        alertBox.classList.add('bg-green-100', 'text-green-500');
-                        alertIcon.innerHTML = `
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                        `;
-                    } else {
-                        alertBox.classList.remove('bg-green-100', 'text-green-500');
-                        alertBox.classList.add('bg-red-100', 'text-red-500');
-                        alertIcon.innerHTML = `
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        `;
-                    }
-            
-                    // Cambiar el contenido de la alerta
-                    alertTitle.innerText = title;
-                    alertMessage.innerText = message;
-            
-                    // Mostrar la alerta
-                    alertBox.classList.remove('hidden');
-            
-                    // Ocultar la alerta automáticamente después de 5 segundos
-                    setTimeout(() => {
-                        alertBox.classList.add('hidden');
-                    }, 5000);
-                };
-            
-                // Ocultar la alerta al hacer clic en el botón de cierre
-                closeAlert.addEventListener('click', () => {
-                    alertBox.classList.add('hidden');
-                });
-            
-                form.addEventListener('submit', async (event) => {
-                    event.preventDefault();  // Prevenimos el comportamiento predeterminado del formulario
-            
-                    // Obtener los valores del formulario
-                    const data = {
-                        company: {
-                            ruc: document.getElementById('companyRuc').value,
-                            razonSocial: document.getElementById('companyRazonSocial').value,
-                            nombreComercial: document.getElementById('companyNombreComercial').value,
-                            address: {
-                                ubigeo: document.getElementById('companyUbigeo').value,
-                                departamento: document.getElementById('companyDepartamento').value,
-                                provincia: document.getElementById('companyProvincia').value,
-                                distrito: document.getElementById('companyDistrito').value,
-                                codLocal: document.getElementById('companyCodigoLocal').value
-                            }
-                        },
-                        client: {
-                            tipoDoc: document.getElementById('clientTipoDoc').value,
-                            numDoc: document.getElementById('clientNumDoc').value,
-                            rznSocial: document.getElementById('clientRazonSocial').value
-                        },
-                        details: [{
-                            codProducto: document.getElementById('prodCodigo').value,
-                            unidad: document.getElementById('prodUnidad').value,
-                            cantidad: parseInt(document.getElementById('prodCantidad').value),
-                            mtoValorUnitario: parseFloat(document.getElementById('prodMtoValorUnitario').value),
-                            descripcion: "Descripción del producto",  // Ajusta este valor según tus necesidades
-                            mtoBaseIgv: parseFloat(document.getElementById('mtoIGV').value),  // Ajusta este valor según tus necesidades
-                            porcentajeIgv: 18,  // Valor fijo para el IGV
-                            igv: parseFloat(document.getElementById('mtoIGV').value),
-                            mtoValorVenta: parseFloat(document.getElementById('valorVenta').value)
-                        }],
-                        tipoOperacion: document.getElementById('tipoOperacion').value,
-                        ublVersion: document.getElementById('ublVersion').value,
-                        tipoDoc: document.getElementById('tipoDoc').value,
-                        serie: document.getElementById('serie').value,
-                        correlativo: document.getElementById('correlativo').value,
-                        fechaEmision: document.getElementById('fechaEmision').value,
-                        tipoMoneda: document.getElementById('tipoMoneda').value,
-                        mtoOperGravadas: parseFloat(document.getElementById('mtoOperGravadas').value),
-                        mtoIGV: parseFloat(document.getElementById('mtoIGV').value),
-                        valorVenta: parseFloat(document.getElementById('valorVenta').value),
-                        subTotal: parseFloat(document.getElementById('subTotal').value),
-                        mtoImpVenta: parseFloat(document.getElementById('mtoImpVenta').value),
-                        legends: [{
-                            code: document.getElementById('legendCode').value,
-                            value: document.getElementById('legendValue').value
-                        }]
-                    };
-            
-                    // Enviar los datos a la API usando fetch
-                    try {
-                        const response = await fetch('http://127.0.0.1:8000/api/invoices/send', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`  // Tomar token de localStorage
-                            },
-                            body: JSON.stringify(data)
-                        });
-            
-                        const result = await response.json();  // Parseamos la respuesta a JSON
-            
-                        if (response.ok) {
-                            // Mostrar la alerta de éxito
-                            showAlert('success', 'Factura Enviada', 'La factura ha sido enviada exitosamente.');
-                        } else {
-                            // Mostrar la alerta de error
-                            showAlert('error', 'Error al Enviar', 'Hubo un problema al enviar la factura. Verifica los datos ingresados.');
-                        }
-                    } catch (error) {
-                        // Manejar errores de conexión
-                        showAlert('error', 'Error de Conexión', 'No se pudo conectar con el servidor.');
-                    }
-                });
-            });
-            </script>
-            
-    </body>
+            <!-- Tipo Documento, Serie y Correlativo -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Tipo de Documento</label>
+                <input
+                  type="text"
+                  id="tipoDoc"
+                  value="01"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Serie</label>
+                <input
+                  type="text"
+                  id="serie"
+                  value="F001"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Correlativo</label>
+                <input
+                  type="text"
+                  id="correlativo"
+                  value="1"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Fecha Emisión, Forma Pago y Tipo Moneda -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Fecha de Emisión</label>
+                <input
+                  type="text"
+                  id="fechaEmision"
+                  value="2020-08-24 13:05:00"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Forma de Pago</label>
+                <input
+                  type="text"
+                  id="formaPago"
+                  value="Contado"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Tipo de Moneda</label>
+                <input
+                  type="text"
+                  id="tipoMoneda"
+                  value="PEN"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Empresa: Datos de la Compañía -->
+            <h2 class="text-xl font-bold mb-4 text-gray-800">
+              Datos de la Compañía
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">RUC</label>
+                <input
+                  type="text"
+                  id="companyRuc"
+                  value="20609278235"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Razón Social</label>
+                <input
+                  type="text"
+                  id="companyRazonSocial"
+                  value="Coders Free S.A.C"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Nombre Comercial</label>
+                <input
+                  type="text"
+                  id="companyNombreComercial"
+                  value="Coders Free "
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Dirección de la Compañía -->
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Ubigeo</label>
+                <input
+                  type="text"
+                  id="companyUbigeo"
+                  value="150101"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Departamento</label>
+                <input
+                  type="text"
+                  id="companyDepartamento"
+                  value="LIMA"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Provincia</label>
+                <input
+                  type="text"
+                  id="companyProvincia"
+                  value="LIMA"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Distrito</label>
+                <input
+                  type="text"
+                  id="companyDistrito"
+                  value="LIMA"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Código Local</label>
+                <input
+                  type="text"
+                  id="companyCodigoLocal"
+                  value="0000"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Datos del Cliente -->
+            <h2 class="text-xl font-bold mb-4 text-gray-800">
+              Datos del Cliente
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Tipo de Documento</label>
+                <input
+                  type="text"
+                  id="clientTipoDoc"
+                  value="6"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Número de Documento</label>
+                <input
+                  type="text"
+                  id="clientNumDoc"
+                  value="20000000001"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div class="col-span-2">
+                <label class="block text-gray-700">Razón Social</label>
+                <input
+                  type="text"
+                  id="clientRazonSocial"
+                  value="EMPRESA X"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Totales -->
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Totales</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700"
+                  >Monto Operaciones Gravadas</label
+                >
+                <input
+                  type="text"
+                  id="mtoOperGravadas"
+                  value="100"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Monto IGV</label>
+                <input
+                  type="text"
+                  id="mtoIGV"
+                  value="18"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Valor Venta</label>
+                <input
+                  type="text"
+                  id="valorVenta"
+                  value="100"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">SubTotal</label>
+                <input
+                  type="text"
+                  id="subTotal"
+                  value="118"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Monto Impuesto Venta</label>
+                <input
+                  type="text"
+                  id="mtoImpVenta"
+                  value="118"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Detalles del Producto -->
+            <h2 class="text-xl font-bold mb-4 text-gray-800">
+              Detalles del Producto
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Código Producto</label>
+                <input
+                  type="text"
+                  id="prodCodigo"
+                  value="P001"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Unidad</label>
+                <input
+                  type="text"
+                  id="prodUnidad"
+                  value="NIU"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Cantidad</label>
+                <input
+                  type="number"
+                  id="prodCantidad"
+                  value="2"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Monto Valor Unitario</label>
+                <input
+                  type="text"
+                  id="prodMtoValorUnitario"
+                  value="50"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+
+            <!-- Leyenda -->
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Leyenda</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-gray-700">Código</label>
+                <input
+                  type="text"
+                  id="legendCode"
+                  value="1000"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700">Valor</label>
+                <input
+                  type="text"
+                  id="legendValue"
+                  value="SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES"
+                  class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="px-4 font-bold py-2 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
+              enviar a sunat
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="./js/auth.js"></script>
+    <script src="./js/invoice.js"></script>
+    <script src="./js/toggleForm.js"></script>
+    <script src="./js/invoiceXML.js"></script>
+    
+    <script src="./js/invoicePDF.js"></script>
+  
+
+  </body>
 </html>
