@@ -1,3 +1,7 @@
+<?php
+// Definir URL base
+$base_url = 'http://localhost/front/'; // Cambia esto a tu URL base
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +23,7 @@
                 No tienes permiso para ver este contenido. Por favor, prueba iniciando sesión.
             </p>
             <div class="flex justify-center mt-6">
-                <a href="/" class="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                <a href="<?php echo $base_url; ?>" class="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
                     Iniciar sesión
                 </a>
             </div>

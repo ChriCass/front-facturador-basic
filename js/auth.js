@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(
                 "El usuario no está autenticado. Redirigiendo a auth_error.html."
             );
-            window.location.href = "auth_error.html";
+            window.location.href = "auth_error.php";
         } else if (mainContent) {
             console.log("El usuario está autenticado. Mostrando el contenido.");
             mainContent.style.display = "block";
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 console.log("Inicio de sesión exitoso.");
                 saveToken(data.access_token);
-                window.location.href = "dashboard.html";
+                window.location.href = "dashboard.php";
             } else {
                 console.error(
                     "Error en el inicio de sesión:",
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 console.log("Registro exitoso.");
                 saveToken(data.access_token);
-                window.location.href = "dashboard.html";
+                window.location.href = "dashboard.php";
             } else {
                 console.error("Error en el registro:", data.message);
                 showAlert("Error en el registro: " + data.message);
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Cerrando sesión...");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("tokenTimestamp");
-        window.location.href = "index.html";
+        window.location.href = "index.php";
     };
 
     // Evento de envío del formulario de inicio de sesión
@@ -224,12 +224,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Verificar si la página está protegida
     const protectedPages = [
-        "dashboard.html",
-        "nota_credito.html",
-        "nota_debito.html",
-        "registrar_companies.html",
-        "companies.html",
-        "boleta_factura_form",
+        "dashboard.php",
+        "nota_credito.php",
+        "nota_debito.php",
+        "registrar_companies.php",
+        "companies.php",
+        "boleta_factura_form.php",
     ];
 
     if (protectedPages.includes(window.location.pathname.split("/").pop())) {
