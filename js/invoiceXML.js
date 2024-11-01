@@ -23,16 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => alertBox.classList.add('hidden'), 5000);
     };
 
-    // Descargar archivo automáticamente
-    const downloadFile = (filename, content) => {
-        const element = document.createElement('a');
-        element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(content));
-        element.setAttribute('download', filename);
+  // Función para generar el nombre del archivo XML
+const generateFileName = (razonSocial, ruc) => {
+    const date = new Date().toISOString().split('T')[0]; // Fecha en formato YYYY-MM-DD
+    const namePart = razonSocial.slice(0, 2).toUpperCase(); // Primeras dos letras de la razón social en mayúsculas
+    const rucPart = ruc.slice(-4); // Últimos cuatro dígitos del RUC
+    return `${namePart}_${date}_${rucPart}.xml`;
+};
 
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-    };
+// Descargar archivo XML automáticamente, ahora usando el nombre personalizado
+const downloadFile = (filename, content) => {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(content));
+    element.setAttribute('download', filename);
+
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+};
 
     // Cerrar alerta manualmente
     closeAlert.addEventListener('click', () => {
@@ -40,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     generateXmlBtn.addEventListener('click', async () => {
+        const razonSocial = document.getElementById('companyRazonSocial').value;
+        const ruc = document.getElementById('companyRuc').value;
+        const filename = generateFileName(razonSocial, ruc);
+    
         const token = localStorage.getItem('accessToken');
         if (!token) {
             showAlert('error', 'Error de Autenticación', 'Token de acceso no encontrado.');
@@ -109,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (result && result.xml) {
-                downloadFile('invoice.xml', result.xml);
+                downloadFile(filename, result.xml);
                 showAlert('success', 'Descarga Completa', 'El archivo XML ha sido descargado exitosamente.');
             } else {
                 const errorMessage = result.message || 'Error al generar el XML.';

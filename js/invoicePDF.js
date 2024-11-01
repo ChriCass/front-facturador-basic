@@ -23,24 +23,39 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => alertBox.classList.add('hidden'), 5000);
     };
 
-    // Descargar PDF desde un blob
-    const downloadPdf = (blob, filename) => {
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-    };
+    // Función para generar el nombre del archivo
+const generateFileName = (razonSocial, ruc) => {
+    const date = new Date().toISOString().split('T')[0]; // Fecha en formato YYYY-MM-DD
+    const namePart = razonSocial.slice(0, 2).toUpperCase(); // Primeras dos letras de la razón social en mayúsculas
+    const rucPart = ruc.slice(-4); // Últimos cuatro dígitos del RUC
+    return `${namePart}_${date}_${rucPart}.pdf`;
+};
+
+// Descargar PDF desde un blob, ahora usando el nombre personalizado
+const downloadPdf = (blob, filename) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+};
+
 
     // Cerrar alerta manualmente
     closeAlert.addEventListener('click', () => {
         alertBox.classList.add('hidden');
     });
 
+    
+
     generatePdfBtn.addEventListener('click', async () => {
+         // Razon Social y RUC para el nombre del archivo
+    const razonSocial = document.getElementById('companyRazonSocial').value;
+    const ruc = document.getElementById('companyRuc').value;
+    const filename = generateFileName(razonSocial, ruc);
         const token = localStorage.getItem('accessToken'); // Token de autenticación
         if (!token) {
             showAlert('error', 'Error de Autenticación', 'Token de acceso no encontrado.');
@@ -115,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const blob = await response.blob(); // Leer respuesta como Blob
-            downloadPdf(blob, 'invoice.pdf');
+            downloadPdf(blob, filename);
             showAlert('success', 'Descarga Completa', 'El archivo PDF ha sido descargado exitosamente.');
         } catch (error) {
             showAlert('error', 'Error de Conexión', error.message || 'No se pudo conectar con el servidor.');
