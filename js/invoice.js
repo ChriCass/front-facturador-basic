@@ -5,9 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertMessage = document.getElementById('alertMessage');
     const alertIcon = document.getElementById('alertIcon');
     const closeAlert = document.getElementById('closeAlert');
+    
+    // Elementos del modal
+    const modal = document.getElementById('responseModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalButton = document.getElementById('closeModal');
 
-    // Mostrar alertas
-    const showAlert = (type, title, message) => {
+    // Mostrar alertas con botón de "Revisar Respuesta"
+    const showAlert = (type, title, message, showReviewButton = false, response = null) => {
         const alertClass = type === 'success' ? 'bg-green-100 text-green-500' : 'bg-red-100 text-red-500';
         alertBox.className = `fixed top-4 right-4 max-w-sm w-full shadow-lg rounded-lg p-4 ${alertClass}`;
         alertIcon.innerHTML = type === 'success'
@@ -19,9 +24,37 @@ document.addEventListener('DOMContentLoaded', () => {
                </svg>`;
         alertTitle.innerText = title;
         alertMessage.innerText = message;
+        
+        // Limpiar cualquier botón anterior
+        const previousButton = alertBox.querySelector('#reviewResponseButton');
+        if (previousButton) {
+            previousButton.remove();
+        }
+
+        // Si se debe mostrar el botón para revisar la respuesta
+        if (showReviewButton && response) {
+            const reviewButton = document.createElement('button');
+            reviewButton.id = 'reviewResponseButton';
+            reviewButton.className = 'ml-4 px-3 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none';
+            reviewButton.innerText = 'Revisar Respuesta';
+            reviewButton.addEventListener('click', () => showModal(response));
+            alertBox.appendChild(reviewButton);
+        }
+
         alertBox.classList.remove('hidden');
-        setTimeout(() => alertBox.classList.add('hidden'), 5000);
+        setTimeout(() => alertBox.classList.add('hidden'), 10000);
     };
+
+    // Mostrar el modal con la información de la API
+    const showModal = (data) => {
+        modalContent.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        modal.classList.remove('hidden');
+    };
+
+    // Cerrar el modal
+    closeModalButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
 
     // Resaltar inputs en rojo si hay error
     const highlightError = (inputId) => {
@@ -80,17 +113,22 @@ document.addEventListener('DOMContentLoaded', () => {
             serie: document.getElementById('serie').value,
             correlativo: document.getElementById('correlativo').value,
             fechaEmision: document.getElementById('fechaEmision').value,
-            formaPago: document.getElementById('formaPago').value,
+            formaPago: {
+                moneda: document.getElementById('tipoMoneda').value,
+                tipo: document.getElementById('formaPago').value,
+            },
             tipoMoneda: document.getElementById('tipoMoneda').value,
             company: {
                 ruc: document.getElementById('companyRuc').value,
                 razonSocial: document.getElementById('companyRazonSocial').value,
                 nombreComercial: document.getElementById('companyNombreComercial').value,
                 address: {
-                    ubigeo: document.getElementById('companyUbigeo').value,
+                    ubigueo: document.getElementById('companyUbigeo').value,
                     departamento: document.getElementById('companyDepartamento').value,
                     provincia: document.getElementById('companyProvincia').value,
                     distrito: document.getElementById('companyDistrito').value,
+                    urbanizacion: '-', // Valor fijo según el ejemplo
+                    direccion: document.getElementById('direccion').value,
                     codLocal: document.getElementById('companyCodigoLocal').value,
                 },
             },
@@ -100,18 +138,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 rznSocial: document.getElementById('clientRazonSocial').value,
             },
             details: [{
+                tipAfeIgv: document.getElementById('tipAfeIgv').value,
                 codProducto: document.getElementById('prodCodigo').value,
                 unidad: document.getElementById('prodUnidad').value,
+                descripcion: document.getElementById('descripcion').value,
                 cantidad: parseInt(document.getElementById('prodCantidad').value),
                 mtoValorUnitario: parseFloat(document.getElementById('prodMtoValorUnitario').value),
-                descripcion: "Descripción del producto",
-                mtoBaseIgv: parseFloat(document.getElementById('mtoIGV').value),
-                porcentajeIgv: 18,
-                igv: parseFloat(document.getElementById('mtoIGV').value),
-                mtoValorVenta: parseFloat(document.getElementById('valorVenta').value),
+                mtoValorVenta: parseFloat(document.getElementById('mtoValorVenta').value),
+                mtoBaseIgv: parseFloat(document.getElementById('mtoBaseIgv').value),
+                porcentajeIgv: parseFloat(document.getElementById('porcentajeIgv').value),
+                igv: parseFloat(document.getElementById('Igv').value),
+                totalImpuestos: parseFloat(document.getElementById('totalImpuestos').value),
+                mtoPrecioUnitario: parseFloat(document.getElementById('mtoPrecioUnitario').value),
             }],
             mtoOperGravadas: parseFloat(document.getElementById('mtoOperGravadas').value),
             mtoIGV: parseFloat(document.getElementById('mtoIGV').value),
+            totalImpuestos: parseFloat(document.getElementById('total_impuestos').value),
             valorVenta: parseFloat(document.getElementById('valorVenta').value),
             subTotal: parseFloat(document.getElementById('subTotal').value),
             mtoImpVenta: parseFloat(document.getElementById('mtoImpVenta').value),
@@ -120,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 value: document.getElementById('legendValue').value,
             }]
         };
+        
     
         if (!validateFields(data)) return;  // Validar antes de enviar
     
@@ -136,16 +179,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
     
             if (response.ok) {
-                showAlert('success', 'Factura Enviada', 'La factura ha sido enviada exitosamente.');
+                showAlert('success', 'Factura Enviada', 'La factura ha sido enviada exitosamente.', true, result);
             } else {
                 const errorMessage = result.errors 
                     ? Object.values(result.errors).flat().join(', ') 
                     : result.message || 'Error al enviar la factura.';
-                showAlert('error', 'Error al Enviar', errorMessage);
+                showAlert('error', 'Error al Enviar', errorMessage, true, result);
             }
         } catch (error) {
-            showAlert('error', 'Error de Conexión', error.message || 'No se pudo conectar con el servidor.');
+            showAlert('error', 'Error de Conexión', error.message || 'No se pudo conectar con el servidor.', true, { error: error.message });
         }
     });
-    
 });

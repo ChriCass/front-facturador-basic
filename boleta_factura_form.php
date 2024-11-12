@@ -79,6 +79,17 @@
 <div id="container" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
   <div class="mt-8 rounded-md bg-white shadow p-5">
     <form id="invoiceForm">
+    <div id="responseModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Respuesta de SUNAT</h2>
+        <div id="modalContent" class="text-sm text-gray-700 mb-4"></div>
+        <button
+            id="closeModal"
+            class="px-4 py-2 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            Cerrar
+        </button>
+    </div>
+</div>
       <div
         id="alertBox"
         class="hidden fixed top-4 right-4 max-w-sm w-full bg-white shadow-lg rounded-lg p-4">
@@ -255,6 +266,14 @@
             value="0000"
             class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
         </div>
+        <div>
+          <label class="block text-gray-700">Direccion</label>
+          <input
+            type="text"
+            id="direccion"
+            value="Av. Villa Nueva 221"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
       </div>
 
       <!-- Datos del Cliente -->
@@ -308,6 +327,15 @@
             class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
         </div>
         <div>
+          <label class="block text-gray-700">Total de impuestos</label>
+          <input
+            type="text"
+            id="total_impuestos"
+            value="18"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+      
+        <div>
           <label class="block text-gray-700">Valor Venta</label>
           <input
             type="text"
@@ -341,6 +369,14 @@
         Detalles del Producto
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+          <label class="block text-gray-700">Tipo afe. igv</label>
+          <input
+            type="text"
+            id="tipAfeIgv"
+            value="10"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
         <div>
           <label class="block text-gray-700">Código Producto</label>
           <input
@@ -358,6 +394,14 @@
             class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
         </div>
         <div>
+          <label class="block text-gray-700">Descripcion</label>
+          <input
+            type="text"
+            id="descripcion"
+            value="PRODUCTO 1"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
           <label class="block text-gray-700">Cantidad</label>
           <input
             type="number"
@@ -371,6 +415,54 @@
             type="text"
             id="prodMtoValorUnitario"
             value="50"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Monto Valor de venta</label>
+          <input
+            type="text"
+            id="mtoValorVenta"
+            value="100"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Monto Base Igv</label>
+          <input
+            type="text"
+            id="mtoBaseIgv"
+            value="100"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Porcentaje Igv</label>
+          <input
+            type="text"
+            id="porcentajeIgv"
+            value="18"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700"> Igv</label>
+          <input
+            type="text"
+            id="Igv"
+            value="18"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Total Impuesto</label>
+          <input
+            type="text"
+            id="totalImpuestos"
+            value="18"
+            class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
+        </div>
+        <div>
+          <label class="block text-gray-700">monto precio unitario</label>
+          <input
+            type="text"
+            id="mtoPrecioUnitario"
+            value="59"
             class="w-full mb-3 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" />
         </div>
       </div>

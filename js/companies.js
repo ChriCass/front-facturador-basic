@@ -1,5 +1,5 @@
 const apiUrl = 'http://127.0.0.1:8000/api/companies'; // Ajusta la URL de la API según sea necesario
-
+ 
 // Función para cargar los datos desde la API
 async function loadCompanies() {
     const token = localStorage.getItem('accessToken'); // Tomar token de localStorage
@@ -44,8 +44,8 @@ function renderTable(companies) {
             <td class="py-2 px-4 border-b">${company.direccion}</td>
             <td class="py-2 px-4 border-b">${company.cert_path}</td>
             <td class="py-2 px-4 border-b  text-center">
-                <div class="flex">
-                <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 mr-2" onclick="editCompany(${company.id})">Editar</button>
+                <div class="flex gap-3">
+                 <a href="edit_companies.php?ruc=${company.ruc}" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Editar</a>
                 <button class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600" onclick="deleteCompany(${company.id})">Eliminar</button>
                 </div>
               
