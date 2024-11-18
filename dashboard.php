@@ -14,8 +14,7 @@
             x-show="open"
             class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-0 sm:text-sm lg:text-base"
             role="alert">
-            <span class="block sm:inline">¡Bienvenido! Estamos encantados de tenerte, Christian
-                Cassas Castillo!</span>
+            <span class="block sm:inline">¡Bienvenido! Estamos encantados de tenerte!</span>
             <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                 <button @click="open = false">
                     <svg
@@ -71,13 +70,11 @@
                 </div>
             </div>
 
-            <!-- Tarjeta Reporte Caja por Año -->
-
-            <!-- Tarjeta Matriz de Cobros -->
+  
             <div class="w-full  px-4 mb-6">
                 <div
                     class="bg-white shadow-md rounded-lg p-4 border border-teal-500 hover:bg-teal-50">
-                    <a href="#" class="block">
+                    <a href="<?php echo $base_url; ?>nota_deb_cred.php" class="block">
                         <div class="flex items-center space-x-4">
                             <div
                                 class="bg-teal-500 text-white p-2 rounded-full">

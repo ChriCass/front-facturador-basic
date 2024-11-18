@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('invoiceForm');
+    const form = document.getElementById('notesForm');
     const alertBox = document.getElementById('alertBox');
     const alertTitle = document.getElementById('alertTitle');
     const alertMessage = document.getElementById('alertMessage');
@@ -142,11 +142,15 @@ const showModal = (data) => {
     
         const data = {
             ublVersion: document.getElementById('ublVersion').value,
-            tipoOperacion: document.getElementById('tipoOperacion').value,
+            
             tipoDoc: document.getElementById('tipoDoc').value,
             serie: document.getElementById('serie').value,
             correlativo: document.getElementById('correlativo').value,
             fechaEmision: document.getElementById('fechaEmision').value,
+            tipDocAfectado: document.getElementById('tipDocAfectado').value,
+            numDocfectado: document.getElementById('numDocfectado').value,
+            codMotivo: document.getElementById('codMotivo').value,
+            desMotivo: document.getElementById('desMotivo').value,
             formaPago: {
                 moneda: document.getElementById('tipoMoneda').value,
                 tipo: document.getElementById('formaPago').value,
@@ -197,11 +201,11 @@ const showModal = (data) => {
             }]
         };
         
-    
+        console.log(data);
         if (!validateFields(data)) return;  // Validar antes de enviar
     
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/invoices/send', {
+            const response = await fetch('http://127.0.0.1:8000/api/notes/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -213,7 +217,7 @@ const showModal = (data) => {
             const result = await response.json();
     
             if (result.sunatResponse && result.sunatResponse.success) {
-                showAlert('success', 'Factura Enviada', 'La factura ha sido enviada exitosamente.', true, result);
+                showAlert('success', 'Nota Enviada', 'La Nota ha sido enviada exitosamente.', true, result);
             }   else {
                 const errorMessage = result.sunatResponse && result.sunatResponse.error
                     ? `Error en SUNAT: ${result.sunatResponse.error.message}`
