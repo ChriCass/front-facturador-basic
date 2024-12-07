@@ -56,12 +56,7 @@ function renderTable(companies) {
     });
 }
 
-// Función para editar una compañía
-function editCompany(id) {
-    console.log(`Editando compañía con ID: ${id}`);
-    // Aquí puedes implementar la lógica para editar la compañía
-    // Mostrar un formulario modal, por ejemplo, para modificar los datos
-}
+ 
 
 // Función para eliminar una compañía
 async function deleteCompany(id) {

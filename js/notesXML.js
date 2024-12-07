@@ -6,22 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertIcon = document.getElementById('alertIcon');
     const closeAlert = document.getElementById('closeAlert');
 
-    // Mostrar alertas
-    const showAlert = (type, title, message) => {
-        const alertClass = type === 'success' ? 'bg-green-100 text-green-500' : 'bg-yellow-100 text-yellow-600';
+      // Mostrar alertas con botón de "Revisar Respuesta"
+      const showAlert = (type, title, message, showReviewButton = false, response = null) => {
+        const alertClass = type === 'success' ? 'bg-green-100 text-green-500' : 'bg-red-100 text-red-500';
         alertBox.className = `fixed top-4 right-4 max-w-sm w-full shadow-lg rounded-lg p-4 ${alertClass}`;
         alertIcon.innerHTML = type === 'success'
             ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                </svg>`
-            : `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v10M15 7v10M19 13H5" />
+            : `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                </svg>`;
         alertTitle.innerText = title;
         alertMessage.innerText = message;
+        
+        // Limpiar cualquier botón anterior
+        const previousButton = alertBox.querySelector('#reviewResponseButton');
+        if (previousButton) {
+            previousButton.remove();
+        }
+
+        // Si se debe mostrar el botón para revisar la respuesta
+        if (showReviewButton && response) {
+            const reviewButton = document.createElement('button');
+            reviewButton.id = 'reviewResponseButton';
+            reviewButton.className = 'ml-4 px-3 py-1 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none';
+            reviewButton.innerText = 'Revisar Respuesta';
+            reviewButton.addEventListener('click', () => {
+                if (response) {
+                    showModal(response); // Mostrar el modal solo si hay una respuesta válida
+                }
+            });
+            alertBox.appendChild(reviewButton);
+        }
         alertBox.classList.remove('hidden');
-        setTimeout(() => alertBox.classList.add('hidden'), 5000);
+        setTimeout(() => alertBox.classList.add('hidden'), 10000);
     };
+
 
   // Función para generar el nombre del archivo XML
 const generateFileName = (razonSocial, ruc) => {
@@ -120,15 +141,15 @@ const downloadFile = (filename, content) => {
 
             const result = await response.json();
 
-            if (result && result.xml) {
+            if (response.ok && result.xml) {
                 downloadFile(filename, result.xml);
                 showAlert('success', 'Descarga Completa', 'El archivo XML ha sido descargado exitosamente.');
             } else {
                 const errorMessage = result.message || 'Error al generar el XML.';
-                showAlert('error', 'Error al Generar XML', errorMessage);
+                showAlert('error', 'Error al Generar XML', errorMessage, true, result);
             }
         } catch (error) {
-            showAlert('error', 'Error de Conexión', error.message || 'No se pudo conectar con el servidor.');
+            showAlert('error', 'Error de Conexión', error.message || 'No se pudo conectar con el servidor.', true, error);
         }
     });
 });

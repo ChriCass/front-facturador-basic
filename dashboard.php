@@ -95,7 +95,7 @@
                             <div>
                                 <h3
                                     class="text-lg font-semibold text-gray-700">
-                                    emitir nota de crédito
+                                    emitir nota de crédito/debito
                                 </h3>
                             </div>
                         </div>
@@ -103,38 +103,7 @@
                 </div>
             </div>
 
-            <!-- Tarjeta Matriz de Pagos -->
-            <div class="w-full  px-4 mb-6">
-                <div
-                    class="bg-white shadow-md rounded-lg p-4 border border-teal-500 hover:bg-teal-50">
-                    <a href="#" class="block">
-                        <div class="flex items-center space-x-4">
-                            <div
-                                class="bg-teal-500 text-white p-2 rounded-full">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    style="
-                                                fill: rgba(0, 0, 0, 1);
-                                                transform: ;
-                                                msfilter: ;
-                                            ">
-                                    <path
-                                        d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3
-                                    class="text-lg font-semibold text-gray-700">
-                                    emitir nota de debito
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+          
         </div>
     </div>
 </div>
